@@ -1,0 +1,4 @@
+.idea
+app/.meteor/local
+app/import.json
+app/npm-debug.log

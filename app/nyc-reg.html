@@ -1,0 +1,128 @@
+<head>
+  <title>NYC Reg</title>
+  <meta content=”width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;” name=”viewport”>
+  <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+</head>
+<template name="layout">
+  {{yield}}
+</template>
+
+<template name="attendeeList">
+  <div class="view">
+    <div class="growl">
+      <div class="growl-inner">{{> growl }}</div>
+    </div>
+    <div class="error" style="display: none">
+      {{> error }}
+    </div>
+    <div class="controls-form" style="display: none">
+      {{> controlsForm }}
+    </div>
+    <div class="topSection">
+      {{> topSection }}
+    </div>
+
+    <div class="attendees">
+      {{#each attendees}}
+        {{> attendee}}
+      {{/each}}
+      {{#if hasMorePosts}}
+      <button class="more-button" href="#{{_id}}">
+        Load more
+      </button>
+      {{/if}}
+    </div>
+
+    <div class="bottom">
+      {{> bottom }}
+    </div>
+  </div>
+</template>
+
+<template name="growl">
+  {{ msg }}
+</template>
+
+<template name="topSection">
+  <div class="topSection-inner">
+    <button class="button-controls" title="Access Controls"><span class="text">Controls</span></button>
+    <input id="searchText" class="searchText" type="text" placeholder="Search Attendees" />
+    <span class="button-clear">X</span>
+  </div>
+</template>
+
+<template name="attendee">
+  <div class="{{classes}}" id="attendee-{{_id}}">
+    <div class="attendee-name">
+      <span class="attendee-realname">{{ field_profile_first }} {{ field_profile_last }}</span>
+      <span class="attendee-username">({{ name }})</span>
+    </div>
+    <div class="attendee-button">
+      {{#if isHere }}
+        <input type="button" class="hereToggle" value="Mark Absent" />
+      {{else}}
+        <input type="button" class="hereToggle" value="Mark Present" />
+      {{/if}}
+    </div>
+  </div>
+</template>
+<template name="bottom">
+  <span class="checkinId">
+    <span class="checkin1">
+      Checking in for <span class="checkinName">{{ currentCheckin }}</span>
+    </span>
+    <span class="checkin2">
+      <span class="countCheckedIn">{{ countCheckedIn }}</span> present out of
+      <span class="countRegistrants">{{ countRegistrantsLoaded }}</span> visible
+    </span>
+    <span class="checkin3">
+      <span class="countRegistrantsTotal">({{ countRegistrantsTotal }} total)</span>
+    </span>
+</template>
+
+<template name="error">
+  Something went wrong! <div class="smaller">...Get Craig and grab the pens and paper...</div>
+</template>
+
+<template name="controlsForm">
+  <div class="controls-form-inner">
+    <div class="button-closeControls">X</div>
+    <ul id="tabs">
+      <li id="add-new"> + </li>
+      <li id="bulk">Bulk</li>
+      <li id="checkInChange">Check-In</li>
+    </ul>
+    <form id="add-new-form">
+      <div class="add-left">
+        <input class="add-field_profile_first" type="textfield" placeholder="First Name" />
+        <input class="add-field_profile_last" type="textfield" placeholder="Last Name" />
+      </div>
+      <div class="add-right">
+        <input class="add-uid" type="number" min="0" placeholder="UID (Optional)" size="3" />
+      </div>
+      <div class="add-left">
+        <input class="add-email" type="textfield" placeholder="Email" />
+        <input class="add-username" type="textfield" placeholder="Username (Optional)" />
+      </div>
+      <input class="add-submit" type="submit" value="Add" />
+    </form>
+    <form id="bulk-form" style="display: none;">
+      <label for="bulkPass">Bulk Operations Password</label>
+      <input name="bulkPass" id="bulkPass" type="textfield" {{ bulk.passwordDisabled }}
+      placeholder="{{bulk.passwordPlaceholder}}" size="30" />
+
+      <button id="clearRegistrants" {{ bulk.passwordDisabled }}>Clear All Registrants</button>
+      <button id="clearCheckinsAll" {{ bulk.passwordDisabled }}>Clear All Checkins</button>
+      <button id="clearCheckinsToday" {{ bulk.passwordDisabled }}>Clear Selected Day's Checkins</button>
+
+      <input id="syncURL" type="textfield" {{ bulk.passwordDisabled }} placeholder="Synchronization URL" size="30">
+      <input id="pull" type="submit" {{ bulk.passwordDisabled }} value="Pull from Sync URL">
+    </form>
+    <form id="checkInChange-form" style="display: none;">
+      <input id="checkinDate" type="textfield" placeholder="{{currentCheckin}}" />
+      <input id="saveCheckin" type="submit" value="Save" />
+      <input id="saveCheckinToday" type="submit" value="Reset to Today" />
+    </form>
+    <div style="clear: both; width: 100%;"></div>
+  </div>
+</template>

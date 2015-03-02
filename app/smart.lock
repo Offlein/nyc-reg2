@@ -1,0 +1,27 @@
+{
+    "meteor": {},
+    "dependencies": {
+        "basePackages": {
+            "iron-router": {},
+            "paginated-subscription": {},
+            "async": {}
+        },
+        "packages": {
+            "iron-router": {
+                "git": "https://github.com/EventedMind/iron-router.git",
+                "tag": "v0.6.2",
+                "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+            },
+            "paginated-subscription": {
+                "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
+                "tag": "v0.1.2",
+                "commit": "35e0c6112df2b4cfeb60b559276a93cac5ee2dd6"
+            },
+            "async": {
+                "git": "https://github.com/peerlibrary/meteor-async.git",
+                "tag": "v0.2.9.3",
+                "commit": "e95ab2eadd39c78261db3f8ef96bcb9e0b36bd81"
+            }
+        }
+    }
+}

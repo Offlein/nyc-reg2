@@ -1,0 +1,291 @@
+@import "breakpoint";
+
+// Variables
+$topSection-def-height: 32px;
+$topSection-med-height: 48px;
+$topSection-padding: 2%;
+
+// Breakpoints
+$breakpoint-medium-width-em: 36em;
+$breakpoint-wide-width-em: 75em;
+
+
+html body {
+  font-size: 125%;
+  @include breakpoint($breakpoint-medium-width-em) {
+    font-size: 160%;
+  }
+  @include breakpoint($breakpoint-wide-width-em) {
+    font-size: 200%;
+  }
+}
+
+
+.topSection {
+  display: table;
+  padding: 1em 0 1em 0;
+  position: fixed;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 5;
+  width: 100%;
+
+  .topSection-inner {
+    margin: 0 auto;
+    width: 97%;
+  }
+
+  input.searchText {
+    width: 85%;
+    height: $topSection-def-height;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0 2%;
+    float: right;
+    border: 1px solid #999;
+
+    @include breakpoint($breakpoint-wide-width-em) {
+      width: 71%;
+      margin: 0 0 0 2%;
+      float: none;
+    }
+  }
+  .button-controls {
+    float: left;
+    cursor: pointer;
+
+    background-image: url('images/gear-32.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 8%;
+    height: ($topSection-def-height+2px);
+    span.text {
+      display: none;
+    }
+
+    @include breakpoint($breakpoint-wide-width-em) {
+      float: none;
+      background-image: url('images/gear-48.png');
+      background-repeat: no-repeat;
+      background-position: left center;
+      padding-left: 46px;
+      width: auto;
+      height: auto;
+      span.text {
+        display: inline;
+      }
+    }
+  }
+  .button-clear {
+    font-family: sans-serif;
+    position: absolute;
+    cursor: pointer;
+    right: ($topSection-padding * 2);
+    line-height: $topSection-def-height;
+    color: #999;
+    @include breakpoint($breakpoint-wide-width-em) {
+      line-height: $topSection-med-height;
+    }
+
+    &:hover {
+      color: red;
+    }
+  }
+
+}
+
+
+.attendees {
+  .attendee {
+    .attendee-username {
+      white-space: nowrap;
+      @include breakpoint($breakpoint-wide-width-em) {
+        white-space: normal;
+      }
+    }
+
+    .attendee-name {
+      width: 60%;
+      max-width: 60%;
+      display: table-cell;
+      padding: 0 2% 0 1%;
+      vertical-align: middle;
+      @include breakpoint($breakpoint-medium-width-em) {
+        width: 66%;
+      }
+      @include breakpoint($breakpoint-wide-width-em) {
+        width: 75%;
+      }
+    }
+    .attendee-button {
+      width: 40%;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 2% 0 0;
+      @include breakpoint($breakpoint-medium-width-em) {
+        width: 34%;
+      }
+      @include breakpoint($breakpoint-medium-width-em) {
+        width: 25%;
+      }
+
+      input {
+        height: 2em;
+        width: 100%;
+        font-size: 90%;
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+.bottom {
+  font-size: 0.5em;
+  margin-top: 1em;
+  color: #666;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
+  border-top: 2px solid #DDD;
+  padding: 0.5em 0;
+  @include breakpoint($breakpoint-wide-width-em) {
+    font-size: 1em;
+  }
+
+  .checkinName {
+    color: brown;
+  }
+
+  .checkin1 {
+    display: block;
+    @include breakpoint($breakpoint-medium-width-em) {
+      display: inline;
+      &:after {
+        content: ' / ';
+      }
+    }
+  }
+  .checkin2 {
+    @include breakpoint($breakpoint-medium-width-em) {
+      &:after {
+        content: ' / ';
+      }
+    }
+  }
+}
+
+
+.error, .controls-form {
+  margin: 0 auto;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 5%;
+  width: 100%;
+  z-index: 75;
+  @include breakpoint($breakpoint-wide-width-em) {
+    top: 25%;
+  }
+}
+
+.controls-form {
+  z-index: 100;
+  height: 92%;
+
+  .controls-form-inner {
+    position: relative;
+    background-color: white;
+    border: 1px solid rgb(189, 133, 30);
+    box-shadow: 0px 4px 8px rgba(189, 133, 30, 0.2);
+    padding: 2.5%;
+    box-sizing: border-box;
+    z-index: 20;
+    width: 90%;
+    margin: 0 auto;
+    overflow: auto;
+    height: 95%;
+    @include breakpoint($breakpoint-wide-width-em) {
+      height: auto;
+    }
+  }
+
+  ul {
+    padding: 0 0 1em;
+
+    li {
+      float: left;
+      margin-right: 2%;
+      padding: 0.5% 1%;
+      background-color: #EEE;
+      border: 1px solid #CCC;
+      cursor: pointer;
+    }
+  }
+  .controls-form * {
+    box-sizing: border-box;
+  }
+  .controls-form input,
+  .controls-form button {
+    font-size: 1.1em;
+    clear: both;
+    display: block;
+  }
+  .controls-form form {
+    clear: both;
+    margin: 0.5em 0 0;
+  }
+
+  .button-closeControls {
+    position: relative;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: white;
+    background: red;
+    padding: 0.25em 0.5em;
+    display: inline;
+    float: right;
+  }
+
+
+  form {
+    margin-top: 2%;
+    clear: both;
+
+    input {
+      font-size: 100%;
+    }
+
+    .add-left {
+      width: 70%;
+      float: left;
+      text-align: left;
+
+      input {
+        width: 85%;
+        float: left;
+        clear: none;
+        margin-right: 1em
+      }
+    }
+
+    .add-right {
+      width: 19%;
+      float: left;
+      text-align: left;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .add-submit {
+      position: absolute;
+      bottom: 2.5%;
+      right: 2.5%;
+      font-size: 1.25em;
+    }
+  }
+}
