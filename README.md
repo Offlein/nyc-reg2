@@ -30,6 +30,7 @@ You must also install something to get data out of Drupal. The [RESTful Web Serv
 
 ###To do the initial NYC-Reg set up:
 You'll need to set up a NYC-Reg bulk operations password before importing any data. You do that directly through MongoDB.
+
 1. From a command line separate from where you launched meteor, `cd` into the same /app directory as earlier.
 2. Run the command `meteor mongo`. You'll be taken into a MongoDB command line interface.
 3. Ensure no password has been set by querying the "settings" database for a "password" variable, like so: `db.settings.find({"name":"password"});`
