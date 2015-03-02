@@ -40,7 +40,7 @@ You'll need to set up a NYC-Reg bulk operations password before importing any da
 1. Pull up the site in your browser, probably at `http://localhost:3000`
 2. Click "Controls"
 3. Click "Bulk Operations"
-4. Type your super secure password into the first textfield -- the "Bulk Operations Password" -- field ~~which doesn't mask your password ... because fuck security~~.
+4. Type your super secure password into the first textfield -- the "Bulk Operations Password" -- field.
 5. In the "Synchronization URL" paste the URL of your Drupal endpoint from before. 
 6. If any error occurs, you'll see it in the Meteor command line, which should still be running.
 7. Otherwise, you will probably see a few names start appearing immediately. It may take a minute or two for all names to load, and you may need to refresh your browser.
